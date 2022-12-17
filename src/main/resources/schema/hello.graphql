@@ -1,0 +1,5 @@
+# the graphql gradle plugin will generate code from schema
+type Hello{
+    text: String
+    randomNumber: Int
+}
