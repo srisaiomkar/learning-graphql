@@ -1,0 +1,16 @@
+# the graphql gradle plugin will generate code from schema
+type Hello {
+  text: String
+  randomNumber: Int
+}
+# if query name is Query there is no need to specify schema like below
+type Query{
+  allHellos: [Hello]
+  oneHello: Hello
+}
+
+#schema {
+#  query: Query
+#}
+
+
