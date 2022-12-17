@@ -4,6 +4,7 @@ type Query{
   oneHello: Hello
   books(authorName: String): [Book]
   booksByReleaseYear(releasedHistoryInput: ReleasedHistoryInput!): [Book]
+  mobileApps(mobileAppFilter: MobileAppFilter) : [MobileApp]
 }
 
 #schema {
