@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Configuration
@@ -43,6 +44,7 @@ public class FakeMobileAppDataSource {
                     .author(author)
                     .version(faker.app().version())
                     .platform(getRandomPlatform())
+                    .appId(UUID.randomUUID().toString())
                     .build();
 
             MOBILE_APP_LIST.add(mobileApp);
