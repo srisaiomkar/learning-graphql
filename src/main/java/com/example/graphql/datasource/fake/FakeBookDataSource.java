@@ -42,7 +42,8 @@ public class FakeBookDataSource {
 
             var releasedHistory = ReleasedHistory.newBuilder()
                     .releasedCountry(faker.address().country())
-                    .year(faker.number().positive())
+                    .year(faker.number().numberBetween(2019,2022))
+                    .hasPrintedEdition(faker.bool().bool())
                     .build();
 
             var book = Book.newBuilder()

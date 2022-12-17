@@ -3,6 +3,7 @@ type Query{
   allHellos: [Hello]
   oneHello: Hello
   books(authorName: String): [Book]
+  booksByReleaseYear(releasedHistoryInput: ReleasedHistoryInput!): [Book]
 }
 
 #schema {

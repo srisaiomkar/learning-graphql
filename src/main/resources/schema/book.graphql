@@ -24,3 +24,7 @@ type ReleasedHistory {
     releasedCountry: String
 }
 
+input ReleasedHistoryInput{
+    year: Int!
+    hasPrintedEdition: Boolean
+}
