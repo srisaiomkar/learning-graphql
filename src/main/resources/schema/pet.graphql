@@ -1,3 +1,6 @@
+""" Herbivore - plant eating,
+    Carnivore - meat eating
+    Omnivore - both"""
 enum PetFoodType{
     HERBIVORE, CARNIVORE, OMNIVORE
 }
