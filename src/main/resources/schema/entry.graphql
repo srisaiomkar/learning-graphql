@@ -2,6 +2,8 @@ scalar Date
 scalar NonNegativeInt
 scalar Url
 
+union SmartSearchResult = Book | MobileApp
+
 # if query name is Query there is no need to specify schema like below
 type Query{
   allHellos: [Hello]
@@ -10,6 +12,7 @@ type Query{
   booksByReleaseYear(releasedHistoryInput: ReleasedHistoryInput!): [Book]
   mobileApps(mobileAppFilter: MobileAppFilter) : [MobileApp]
   pets(petFilter: PetFilter): [Pet]
+  smartSearch(searchTerm: String) : [SmartSearchResult]
 }
 
 #schema {
