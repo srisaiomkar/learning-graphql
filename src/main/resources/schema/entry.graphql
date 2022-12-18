@@ -15,8 +15,16 @@ type Query{
   smartSearch(searchTerm: String) : [SmartSearchResult]
 }
 
+type Mutation{
+  addHello(helloInput : HelloInput!): Int
+  changeHello(helloInput: HelloInput!) : [Hello]
+  deleteHello(helloNum: Int): Int
+}
+
+
 #schema {
-#  query: Query
+#  query: Query,
+#
 #}
 
 
