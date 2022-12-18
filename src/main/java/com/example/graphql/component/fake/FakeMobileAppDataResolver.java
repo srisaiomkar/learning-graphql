@@ -10,6 +10,7 @@ import com.netflix.graphql.dgs.InputArgument;
 import graphql.schema.DataFetchingEnvironment;
 import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -51,6 +52,22 @@ public class FakeMobileAppDataResolver {
                 app.getAuthor().getName(),
                 StringUtils.defaultIfBlank(filter.getAuthorFilter().getName(),StringUtils.EMPTY))
         ) return false;
+
+        if(!app.getReleasedDate().isAfter(
+                Optional.ofNullable(filter.getReleasedAfter()).orElse(LocalDate.MIN)
+            )
+        ) return false;
+
+        if(filter.getAppUrl() != null && !StringUtils.equalsIgnoreCase(
+                app.getAppUrl().toString(),
+                StringUtils.defaultIfBlank(filter.getAppUrl().toString(),StringUtils.EMPTY)
+        )) return false;
+
+        if( app.getNumOfDownloads() <
+                Optional.ofNullable(filter.getMinDownloads()).orElse(0)
+        ){
+            return false;
+        }
 
         return true;
     }

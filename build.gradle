@@ -34,6 +34,12 @@ generateJava{
    schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
    packageName = 'com.example.graphql.generated' // The package name to use to generate sources
    generateClient = true // Enable generating the type safe query API
+	// when using scalar types need to map from scalar type to Java type
+	typeMapping = [
+	        "Date": "java.time.LocalDate",
+			"Url":"java.net.URL",
+			"NonNegativeInt":"java.lang.Integer"
+	]
 }
 
 dependencyManagement {

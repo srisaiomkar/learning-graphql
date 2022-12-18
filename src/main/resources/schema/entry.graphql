@@ -1,3 +1,7 @@
+scalar Date
+scalar NonNegativeInt
+scalar Url
+
 # if query name is Query there is no need to specify schema like below
 type Query{
   allHellos: [Hello]
