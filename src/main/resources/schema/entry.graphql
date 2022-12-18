@@ -13,6 +13,7 @@ type Query{
   mobileApps(mobileAppFilter: MobileAppFilter) : [MobileApp]
   pets(petFilter: PetFilter): [Pet]
   smartSearch(searchTerm: String) : [SmartSearchResult]
+  headerDemo: String
 }
 
 type Mutation{
