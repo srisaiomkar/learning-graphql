@@ -9,6 +9,7 @@ type Query{
   books(authorName: String): [Book]
   booksByReleaseYear(releasedHistoryInput: ReleasedHistoryInput!): [Book]
   mobileApps(mobileAppFilter: MobileAppFilter) : [MobileApp]
+  pets(petFilter: PetFilter): [Pet]
 }
 
 #schema {

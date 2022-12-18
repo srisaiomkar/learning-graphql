@@ -1,0 +1,27 @@
+enum PetFoodType{
+    HERBIVORE, CARNIVORE, OMNIVORE
+}
+
+interface Pet{
+    name: String
+    breed: String
+    foodType: PetFoodType
+}
+
+type Cat implements Pet{
+    name: String
+    breed: String
+    foodType: PetFoodType
+    registry: String
+}
+
+type Dog implements Pet{
+    name: String
+    breed: String
+    foodType: PetFoodType
+    coatLength: String
+}
+
+input PetFilter{
+    name: String
+}

@@ -7,6 +7,7 @@ type MobileApp{
     releasedDate: Date
     appUrl: Url
     numOfDownloads: NonNegativeInt
+    category: MobileAppCategory
 }
 
 input MobileAppFilter{
@@ -17,8 +18,13 @@ input MobileAppFilter{
     releasedAfter: Date
     appUrl: Url
     minDownloads: NonNegativeInt
+    category: MobileAppCategory
 }
 
 input AuthorFilter {
    name: String
+}
+
+enum MobileAppCategory{
+    GAME, PRODUCTIVITY, FINANCE, DATING
 }

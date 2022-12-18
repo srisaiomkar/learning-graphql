@@ -68,6 +68,9 @@ public class FakeMobileAppDataResolver {
         ){
             return false;
         }
+        if(filter.getCategory() != null && !app.getCategory().equals(filter.getCategory())){
+            return false;
+        }
 
         return true;
     }

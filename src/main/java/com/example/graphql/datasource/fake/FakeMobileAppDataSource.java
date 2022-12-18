@@ -3,6 +3,7 @@ package com.example.graphql.datasource.fake;
 import com.example.graphql.generated.types.Address;
 import com.example.graphql.generated.types.Author;
 import com.example.graphql.generated.types.MobileApp;
+import com.example.graphql.generated.types.MobileAppCategory;
 import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -51,6 +52,7 @@ public class FakeMobileAppDataSource {
                     .releasedDate(LocalDate.now().minusDays(faker.random().nextInt(300)))
                     .numOfDownloads(faker.number().numberBetween(0,5_000_000))
                     .appUrl(new URL("https://" + faker.internet().url()))
+                    .category(MobileAppCategory.values()[faker.random().nextInt(MobileAppCategory.values().length)])
                     .build();
 
             MOBILE_APP_LIST.add(mobileApp);
