@@ -20,7 +20,9 @@ dependencies {
 	implementation(platform('com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.4.3'))
     implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
 	implementation "com.netflix.graphql.dgs:graphql-dgs-extended-scalars"
+	implementation "com.netflix.graphql.dgs:graphql-dgs-extended-scalars"
 	implementation 'net.datafaker:datafaker:1.7.0'
+	implementation 'com.netflix.graphql.dgs:graphql-dgs-subscriptions-websockets-autoconfigure:5.5.0'
 // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 
@@ -38,7 +40,8 @@ generateJava{
 	typeMapping = [
 	        "Date": "java.time.LocalDate",
 			"Url":"java.net.URL",
-			"NonNegativeInt":"java.lang.Integer"
+			"NonNegativeInt":"java.lang.Integer",
+			"DateTime": "java.time.OffsetDateTime"
 	]
 }
 

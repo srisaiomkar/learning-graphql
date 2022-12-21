@@ -1,0 +1,99 @@
+interface SearchableItem{
+    id: ID!
+    CreateDateTime: DateTime!
+    PrettyCreatedDateTime: DateTime
+    content: String!
+    author: User!
+}
+
+input SearchFilter{
+    searchTerm: String
+}
+
+type Question implements SearchableItem{
+    id: ID!
+    title: String
+    CreateDateTime: DateTime!
+    PrettyCreatedDateTime: DateTime
+    content: String!
+    tags: [String!]!
+    numOfSolutions: NonNegativeInt
+    answers: [Answer!]
+    author: User!
+}
+
+type Answer implements  SearchableItem{
+    id: ID!
+    CreateDateTime: DateTime!
+    PrettyCreatedDateTime: DateTime
+    content: String!
+    category: AnswerCategory!
+    upVotes: NonNegativeInt
+    downVotes: NonNegativeInt
+    author: User!
+}
+
+enum AnswerCategory{
+    EXPLANATION, REFERENCE
+}
+
+type User{
+    id : ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    createdDateTime: DateTime!
+    avatar: Url
+    questions: [Question!]
+}
+
+input UserCreateInput{
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+    avatar: Url
+}
+
+input UserLoginInput{
+    email: String!
+    password: String!
+}
+
+input UserActivateInput{
+    userId: ID!
+    isActive: Boolean
+}
+
+input QuestionCreateInput{
+    title: String
+    content: String!
+    tags: [String!]!
+}
+
+input AnswerCreateInput{
+    questionId: ID!
+    content: String!
+    category: AnswerCategory!
+    upVotes: NonNegativeInt
+    downVotes: NonNegativeInt
+}
+
+input AnswerVoteInput{
+    answerId: ID!
+    isGood: Boolean
+}
+
+type AuthToken{
+    token: String
+    expiryDateTime: DateTime
+}
+
+type UserResponse{
+    user: User
+    token: AuthToken
+}
+
+type UserActivationResponse{
+    isActive: String
+}

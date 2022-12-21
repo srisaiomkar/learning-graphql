@@ -1,6 +1,7 @@
 scalar Date
 scalar NonNegativeInt
 scalar Url
+scalar DateTime
 
 union SmartSearchResult = Book | MobileApp
 
@@ -14,14 +15,32 @@ type Query{
   pets(petFilter: PetFilter): [Pet]
   smartSearch(searchTerm: String) : [SmartSearchResult]
   headerDemo: String
+
+  me: User
+  questionLatestList: [Question]
+  questionDetails(id: ID): Question
+  questionAndAnswerSearch(term: String): [Question]
 }
 
 type Mutation{
   addHello(helloInput : HelloInput!): Int
   changeHello(helloInput: HelloInput!) : [Hello]
   deleteHello(helloNum: Int): Int
+
+#  for q and A
+  userCreate(userCreateInput : UserCreateInput!): UserResponse
+  userLogin(userLoginInput: UserLoginInput!): UserResponse
+  userActivate(userActivateInput: UserActivateInput): UserActivationResponse
+  questionCreate(questionCreateInput: QuestionCreateInput): Question
+  answerCreate(answerCreateInput: AnswerCreateInput): Answer
+  answerVote(answerVoteInput: AnswerVoteInput): Answer
 }
 
+type Subscription{
+  randomStock: Stock
+  questionAdded: Question
+  answerVoteChanged(answerId: ID): Answer
+}
 
 #schema {
 #  query: Query,
