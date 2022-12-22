@@ -1,7 +1,7 @@
 interface SearchableItem{
     id: ID!
-    CreateDateTime: DateTime!
-    PrettyCreatedDateTime: DateTime
+    CreatedDateTime: DateTime!
+    PrettyCreatedDateTime: String
     content: String!
     author: User!
 }
@@ -13,8 +13,8 @@ input SearchFilter{
 type Question implements SearchableItem{
     id: ID!
     title: String
-    CreateDateTime: DateTime!
-    PrettyCreatedDateTime: DateTime
+    CreatedDateTime: DateTime!
+    PrettyCreatedDateTime: String
     content: String!
     tags: [String!]!
     numOfSolutions: NonNegativeInt
@@ -24,8 +24,8 @@ type Question implements SearchableItem{
 
 type Answer implements  SearchableItem{
     id: ID!
-    CreateDateTime: DateTime!
-    PrettyCreatedDateTime: DateTime
+    CreatedDateTime: DateTime!
+    PrettyCreatedDateTime: String
     content: String!
     category: AnswerCategory!
     upVotes: NonNegativeInt
