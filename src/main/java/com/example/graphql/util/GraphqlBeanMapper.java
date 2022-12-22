@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.ocpsoft.prettytime.PrettyTime;
 
 import java.time.ZoneOffset;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,16 +23,16 @@ public class GraphqlBeanMapper {
     public static User mapToGraphql(UsersEntity usersEntity){
         var user = new User();
         var createdDateTime = usersEntity.getCreatedAt().atOffset(ZONE_OFFSET);
-        var questions = usersEntity.getQuestions().stream()
-                                .map(questionsEntity -> mapToGraphql(questionsEntity))
-                                .collect(Collectors.toList());
+//        var questions = usersEntity.getQuestions().stream()
+//                                .map(questionsEntity -> mapToGraphql(questionsEntity))
+//                                .collect(Collectors.toList());
         user.setId(usersEntity.getId().toString());
         user.setFirstName(usersEntity.getFirstname());
         user.setLastName(usersEntity.getLastname());
         user.setEmail(usersEntity.getEmail());
         user.setAvatar(usersEntity.getAvatar());
         user.setCreatedDateTime(createdDateTime);
-        user.setQuestions(questions);
+//        user.setQuestions(questions);
 
         return user;
     }
@@ -41,7 +42,8 @@ public class GraphqlBeanMapper {
 
         var createdDateTime = questionsEntity.getCreatedAt().atOffset(ZONE_OFFSET);
         var answers = questionsEntity.getAnswers().stream()
-                        .map(answersEntity -> mapToGraphql(answersEntity))
+//                        .sorted(Comparator.comparing(AnswersEntity::getCreatedAt).reversed())
+                        .map(GraphqlBeanMapper::mapToGraphql)
                         .collect(Collectors.toList());
         question.setId(questionsEntity.getId().toString());
         question.setContent(questionsEntity.getContent());
