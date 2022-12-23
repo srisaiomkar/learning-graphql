@@ -17,6 +17,7 @@ type Query{
   headerDemo: String
 
   me: User
+  userLogin(userLoginInput: UserLoginInput!): UserResponse
   questionLatestList: [Question]
   questionDetails(id: ID): Question
   questionAndAnswerSearch(term: String): [SearchableItem]
@@ -29,7 +30,6 @@ type Mutation{
 
 #  for q and A
   userCreate(userCreateInput : UserCreateInput!): UserResponse
-  userLogin(userLoginInput: UserLoginInput!): UserResponse
   userActivate(userActivateInput: UserActivateInput): UserActivationResponse
   questionCreate(questionCreateInput: QuestionCreateInput): Question
   answerCreate(answerCreateInput: AnswerCreateInput): Answer
