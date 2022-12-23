@@ -25,4 +25,8 @@ public class QuestionsQueryService {
     public Optional<QuestionsEntity> questionDetail(UUID id){
         return questionsRepository.findById(id);
     }
+
+    public List<QuestionsEntity> questionsBySearchTerm(String term){
+        return questionsRepository.findBySearchTerm("%" + term + "%");
+    }
 }

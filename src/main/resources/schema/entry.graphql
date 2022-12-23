@@ -19,7 +19,7 @@ type Query{
   me: User
   questionLatestList: [Question]
   questionDetails(id: ID): Question
-  questionAndAnswerSearch(term: String): [Question]
+  questionAndAnswerSearch(term: String): [SearchableItem]
 }
 
 type Mutation{
