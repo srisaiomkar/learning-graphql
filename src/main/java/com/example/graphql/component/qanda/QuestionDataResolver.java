@@ -67,8 +67,8 @@ public class QuestionDataResolver {
             ){
         var usersEntity = usersQueryService.getUserFromToken(authToken)
                 .orElseThrow(QAndAAuthenticationException::new);
-        var savedQuestionsEntity = questionsCommandService
-                .createQuestion(questionCreateInput,usersEntity);
+        var questionsEntity = GraphqlBeanMapper.mapInputToEntity(questionCreateInput, usersEntity);
+        var savedQuestionsEntity = questionsCommandService.createQuestion(questionsEntity);
         return mapToGraphql(savedQuestionsEntity);
     }
 

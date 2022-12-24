@@ -16,15 +16,7 @@ public class QuestionsCommandService {
     @Autowired
     private QuestionsRepository questionsRepository;
 
-    public QuestionsEntity createQuestion(QuestionCreateInput input, UsersEntity usersEntity){
-        var questionsEntity = new QuestionsEntity();
-        questionsEntity.setId(UUID.randomUUID());
-        questionsEntity.setTags(String.join(",",input.getTags()));
-        questionsEntity.setCreatedBy(usersEntity);
-        questionsEntity.setTitle(input.getTitle());
-        questionsEntity.setContent(input.getContent());
-        questionsEntity.setAnswers(Collections.emptyList());
-
+    public QuestionsEntity createQuestion(QuestionsEntity questionsEntity){
         return questionsRepository.save(questionsEntity);
     }
 }

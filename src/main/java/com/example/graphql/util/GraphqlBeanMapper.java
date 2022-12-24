@@ -4,16 +4,17 @@ package com.example.graphql.util;
 import com.example.graphql.datasource.qanda.entity.AnswersEntity;
 import com.example.graphql.datasource.qanda.entity.QuestionsEntity;
 import com.example.graphql.datasource.qanda.entity.UsersEntity;
-import com.example.graphql.generated.types.Answer;
-import com.example.graphql.generated.types.AnswerCategory;
-import com.example.graphql.generated.types.Question;
-import com.example.graphql.generated.types.User;
+import com.example.graphql.datasource.qanda.repository.QuestionsRepository;
+import com.example.graphql.generated.types.*;
 import org.apache.commons.lang3.StringUtils;
 import org.ocpsoft.prettytime.PrettyTime;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.ZoneOffset;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class GraphqlBeanMapper {
@@ -72,6 +73,31 @@ public class GraphqlBeanMapper {
         answer.setPrettyCreatedDateTime(PRETTY_TIME.format(createdDateTime));
         answer.setCategory(category);
         return answer;
+    }
+
+    public static QuestionsEntity mapInputToEntity(QuestionCreateInput input, UsersEntity usersEntity){
+        var questionsEntity = new QuestionsEntity();
+        questionsEntity.setId(UUID.randomUUID());
+        questionsEntity.setTags(String.join(",",input.getTags()));
+        questionsEntity.setCreatedBy(usersEntity);
+        questionsEntity.setTitle(input.getTitle());
+        questionsEntity.setContent(input.getContent());
+        questionsEntity.setAnswers(Collections.emptyList());
+
+        return questionsEntity;
+    }
+
+    public static AnswersEntity mapInputToEntity(AnswerCreateInput input, UsersEntity usersEntity, QuestionsEntity questionsEntity){
+        var answersEntity = new AnswersEntity();
+        answersEntity.setId(UUID.randomUUID());
+        answersEntity.setContent(input.getContent());
+        answersEntity.setCategory(input.getCategory().name());
+        answersEntity.setCreatedBy(usersEntity);
+        answersEntity.setQuestion(questionsEntity);
+        answersEntity.setDownVotes(0);
+        answersEntity.setUpVotes(0);
+
+        return answersEntity;
     }
 
 }
