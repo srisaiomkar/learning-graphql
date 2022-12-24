@@ -7,6 +7,7 @@ import com.example.graphql.service.query.UsersQueryService;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.InputArgument;
+import com.netflix.graphql.dgs.exceptions.DgsEntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 
@@ -23,7 +24,8 @@ public class UserDataResolver {
             field = DgsConstants.QUERY.Me
     )
     public User userDetails(@RequestHeader("authToken") String authToken){
-        var userEntity = usersQueryService.getUserFromToken(authToken);
+        var userEntity = usersQueryService.getUserFromToken(authToken)
+                .orElseThrow(DgsEntityNotFoundException::new);
         return mapToGraphql(userEntity);
     }
 
